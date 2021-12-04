@@ -877,9 +877,9 @@ h1_3</code></pre>
 # fractals are judged more than 400 ms (?) faster
 kp_correct %&gt;% group_by(fractal) %&gt;% 
   summarize(mean_RT = mean(RT))
-fit_brms_keyPresss_RT &lt;- brm(RT ~ 1 + fractal + (1|submission_id), data=kp_correct, seed = 617)</code></pre>
+fit_brms_keyPress_RT &lt;- brm(RT ~ 1 + fractal + (1|submission_id), data=kp_correct, seed = 617)</code></pre>
 <p>Here we test the main effect of fractal or non-fractal images on response time (So that if the image is a fractal image that it has a faster RTs). Other possible side effects will be tested in the next section.</p>
-<pre class="r"><code>h2_3 &lt;- hypothesis(fit_brms_keyPresss_RT, &quot;fractalTRUE &lt; 0&quot;)
+<pre class="r"><code>h2_3 &lt;- hypothesis(fit_brms_keyPress_RT, &quot;fractalTRUE &lt; 0&quot;)
 h2_3</code></pre>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
@@ -965,8 +965,8 @@ h1_3_4</code></pre>
 # fractals are judged more than 400 ms (?) faster
 kp_correct %&gt;% group_by(fractal) %&gt;% 
   summarize(mean_RT = mean(RT))
-fit_brms_keyPresss_RT_complex &lt;- brm(RT ~ 1 + fractal * nFOddball + (1|submission_id), data=kp_correct, seed = 617)</code></pre>
-<pre class="r"><code>h2_3_1 &lt;- hypothesis(fit_brms_keyPresss_RT_complex, &quot;fractalTRUE &lt; 0&quot;)
+fit_brms_keyPress_RT_complex &lt;- brm(RT ~ 1 + fractal * nFOddball + (1|submission_id), data=kp_correct, seed = 617)</code></pre>
+<pre class="r"><code>h2_3_1 &lt;- hypothesis(fit_brms_keyPress_RT_complex, &quot;fractalTRUE &lt; 0&quot;)
 h2_3_1</code></pre>
 <pre><code>## Hypothesis Tests for class b:
 ##          Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
@@ -979,7 +979,7 @@ h2_3_1</code></pre>
 ## for two-sided hypotheses, the value tested against lies outside the 95%-CI.
 ## Posterior probabilities of point hypotheses assume equal prior probabilities.</code></pre>
 <p>The Evid.Ratio (0) suggest strong evidence against the idea that fractals take shorter than non-fractals.</p>
-<pre class="r"><code>h2_3_2 &lt;- hypothesis(fit_brms_keyPresss_RT_complex, &quot;nFOddballTRUE  &lt; 0&quot;)
+<pre class="r"><code>h2_3_2 &lt;- hypothesis(fit_brms_keyPress_RT_complex, &quot;nFOddballTRUE  &lt; 0&quot;)
 h2_3_2</code></pre>
 <pre><code>## Hypothesis Tests for class b:
 ##            Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob
@@ -992,7 +992,7 @@ h2_3_2</code></pre>
 ## for two-sided hypotheses, the value tested against lies outside the 95%-CI.
 ## Posterior probabilities of point hypotheses assume equal prior probabilities.</code></pre>
 <p>The Evid.Ratio (Inf) shows strong evidence for the idea that the non-fractal oddball condition amongst fractal standards achieves faster RTs than the opposite condition. Therefore the fractal-oddball condition seems to result in slower RTs.</p>
-<pre class="r"><code>h2_3_3 &lt;- hypothesis(fit_brms_keyPresss_RT_complex, &quot;fractalTRUE:nFOddballTRUE &lt; 0&quot;)
+<pre class="r"><code>h2_3_3 &lt;- hypothesis(fit_brms_keyPress_RT_complex, &quot;fractalTRUE:nFOddballTRUE &lt; 0&quot;)
 h2_3_3</code></pre>
 <pre><code>## Hypothesis Tests for class b:
 ##                 Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio
@@ -1012,8 +1012,8 @@ h2_3_3</code></pre>
 
 kp_correct %&gt;% group_by(fractal) %&gt;% 
   summarize(mean_RT = mean(RT))
-fit_brms_keyPresss_RT_complex_f_f &lt;- brm(RT ~ 1 + fractal * FOddball + (1|submission_id), data=kp_correct, seed = 617)</code></pre>
-<pre class="r"><code>h2_3_4 &lt;- hypothesis(fit_brms_keyPresss_RT_complex_f_f, &quot;fractalTRUE:FOddballTRUE &lt; 0&quot;)
+fit_brms_keyPress_RT_complex_f_f &lt;- brm(RT ~ 1 + fractal * FOddball + (1|submission_id), data=kp_correct, seed = 617)</code></pre>
+<pre class="r"><code>h2_3_4 &lt;- hypothesis(fit_brms_keyPress_RT_complex_f_f, &quot;fractalTRUE:FOddballTRUE &lt; 0&quot;)
 h2_3_4</code></pre>
 <pre><code>## Hypothesis Tests for class b:
 ##                 Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio

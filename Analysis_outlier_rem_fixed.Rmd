@@ -602,13 +602,13 @@ h1_3
 # fractals are judged more than 400 ms (?) faster
 kp_correct %>% group_by(fractal) %>% 
   summarize(mean_RT = mean(RT))
-fit_brms_keyPresss_RT <- brm(RT ~ 1 + fractal + (1|submission_id), data=kp_correct, seed = 617)
+fit_brms_keyPress_RT <- brm(RT ~ 1 + fractal + (1|submission_id), data=kp_correct, seed = 617)
 ```
 
 Here we test the main effect of fractal or non-fractal images on response time (So that if the image is a fractal image that it has a faster RTs). Other possible side effects will be tested in the next section.
 
 ```{r}
-h2_3 <- hypothesis(fit_brms_keyPresss_RT, "fractalTRUE < 0")
+h2_3 <- hypothesis(fit_brms_keyPress_RT, "fractalTRUE < 0")
 h2_3
 ```
 Again, we find strong evidence for the idea that fractal images are being processed faster than non-fractal images. (**Evid.Ratio = Inf**).
@@ -672,25 +672,25 @@ Here we did a more complex analysis on the RT of the key-press task regarding th
 # fractals are judged more than 400 ms (?) faster
 kp_correct %>% group_by(fractal) %>% 
   summarize(mean_RT = mean(RT))
-fit_brms_keyPresss_RT_complex <- brm(RT ~ 1 + fractal * nFOddball + (1|submission_id), data=kp_correct, seed = 617)
+fit_brms_keyPress_RT_complex <- brm(RT ~ 1 + fractal * nFOddball + (1|submission_id), data=kp_correct, seed = 617)
 ```
 
 
 ```{r}
-h2_3_1 <- hypothesis(fit_brms_keyPresss_RT_complex, "fractalTRUE < 0")
+h2_3_1 <- hypothesis(fit_brms_keyPress_RT_complex, "fractalTRUE < 0")
 h2_3_1
 ```
 The Evid.Ratio (0) suggest strong evidence against the idea that fractals take shorter than non-fractals.
 
 
 ```{r}
-h2_3_2 <- hypothesis(fit_brms_keyPresss_RT_complex, "nFOddballTRUE  < 0")
+h2_3_2 <- hypothesis(fit_brms_keyPress_RT_complex, "nFOddballTRUE  < 0")
 h2_3_2
 ```
 The Evid.Ratio (Inf) shows strong evidence for the idea that the non-fractal oddball condition amongst fractal standards achieves faster RTs than the opposite condition. Therefore the fractal-oddball condition seems to result in slower RTs.
 
 ```{r}
-h2_3_3 <- hypothesis(fit_brms_keyPresss_RT_complex, "fractalTRUE:nFOddballTRUE < 0")
+h2_3_3 <- hypothesis(fit_brms_keyPress_RT_complex, "fractalTRUE:nFOddballTRUE < 0")
 h2_3_3
 ```
 The Bayesian posterior estimates of the tested hypothesis (Estimate = -17.01, CI = [-128.1, 93.19], Evid.Ratio = 1.49) show anecdotal evidence for the tested hypothesis for the idea that the fractal images as the standards with non-Fractal image oddballs achieve higher RTs.
@@ -704,11 +704,11 @@ kp_correct %>%
 
 kp_correct %>% group_by(fractal) %>% 
   summarize(mean_RT = mean(RT))
-fit_brms_keyPresss_RT_complex_f_f <- brm(RT ~ 1 + fractal * FOddball + (1|submission_id), data=kp_correct, seed = 617)
+fit_brms_keyPress_RT_complex_f_f <- brm(RT ~ 1 + fractal * FOddball + (1|submission_id), data=kp_correct, seed = 617)
 ```
 
 ```{r}
-h2_3_4 <- hypothesis(fit_brms_keyPresss_RT_complex_f_f, "fractalTRUE:FOddballTRUE < 0")
+h2_3_4 <- hypothesis(fit_brms_keyPress_RT_complex_f_f, "fractalTRUE:FOddballTRUE < 0")
 h2_3_4
 ```
 The Bayesian posterior estimates of the tested hypothesis (Evid.Ratio = 0.62) suggest moderate evidence against the idea that fractal images as oddballs result in faster RTs.
